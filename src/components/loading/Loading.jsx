@@ -20,7 +20,7 @@ const Loading = () => {
                     fill="currentFill"
                 />
             </svg>
-            <span className="sr-only">Loading...</span>
+            <span className="sr-only">문제 생성중...</span>
         </div>
     );
 };
