@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import MainPageForm from './components/mainpage/MainPage.jsx';
 import PDFUploadPage from './components/pdfuploadpage/PDFUploadPage.jsx';
 import ProblemListPage from './components/problemlistpage/ProblemListPage.jsx';
+import SignupForm from './components/signup/Signup.jsx';
 function App() {
   return (
     <div className="App">
@@ -11,8 +12,9 @@ function App() {
         <Route path="/" element={< MainPageForm />} />
         <Route path="/upload" element={< PDFUploadPage />} />
         <Route path="/problem" element={< ProblemListPage />} />
+        <Route path="/signup" element={< SignupForm />} />
       </Routes>
-    </div>
+    </div >
   );
 }
 

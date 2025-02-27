@@ -4,6 +4,10 @@ const Header = () => {
         // 홈페이지로 돌아가는 로직
         window.location.href = "/"; // 도메인 루트로 이동
     };
+    const handleSingupClick = () => {
+        // 홈페이지로 돌아가는 로직
+        window.location.href = "/signup"; // 도메인 루트로 이동
+    };
     return (
         <header className="bg-white">
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -25,7 +29,7 @@ const Header = () => {
                 </div>
                 {/* 오른쪽 버튼(회원가입)도 항상 표시되도록 수정 */}
                 <div className="flex flex-1 justify-end">
-                    <a href="#" className="text-sm font-semibold text-gray-900">회원가입 <span aria-hidden="true"></span></a>
+                    <div className="text-sm font-semibold text-gray-900 cursor-pointer" onClick={() => handleSingupClick()}>회원가입<span aria-hidden="true"></span></div>
                 </div>
             </nav>
         </header>
