@@ -59,8 +59,7 @@ const Problem = ({ problem }) => {
                                 <div
                                     key={key}
                                     onClick={() => handleChoice(key)} // 선택지 클릭 시 handleChoice 호출
-                                    className={`p-2 cursor-pointer rounded border ${choiceAnswer === key ? "border-green-500 bg-green-100" : "border-gray-300"
-                                        }`} // 선택된 항목에 초록 테두리 추가
+                                    className={`p-2 cursor-pointer rounded border ${choiceAnswer === key ? "border-green-500 bg-green-100" : "border-gray-300"} mb-2`} // 선택된 항목에 초록 테두리 추가 및 항목 간 간격 추가
                                 >
                                     <strong>{key}:</strong> {value}
                                 </div>
