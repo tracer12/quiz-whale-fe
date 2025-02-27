@@ -54,6 +54,11 @@ const Problem = ({ problem }) => {
                         <div className="mt-4">
                             <strong>정답:</strong> {problem.answer}
                         </div>
+                        {problem.Explanation && (
+                            <div className="mt-4">
+                                <strong>설명:</strong> {problem.Explanation}
+                            </div>
+                        )}
                     </div>
                 )}
 

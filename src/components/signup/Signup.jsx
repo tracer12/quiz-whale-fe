@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import Header from "../header/Header";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
     const [email, setEmail] = useState(""); // 이메일 상태
     const [password, setPassword] = useState(""); // 비밀번호 상태
     const [confirmPassword, setConfirmPassword] = useState(""); // 비밀번호 확인 상태
+    const [nickname, setNickname] = useState(""); // 닉네임 상태
+    const navigate = useNavigate();
 
     const handleLogoClick = () => {
         // 홈페이지로 돌아가는 로직
         window.location.href = "/"; // 도메인 루트로 이동
     };
+
     // 회원가입 처리 함수
     const handleSignup = async (event) => {
         event.preventDefault();
@@ -22,18 +26,28 @@ const SignupForm = () => {
 
         const header = {
             headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
+                "Content-Type": "application/json", // JSON 형식으로 보내기
             }
         }
 
-        const form = new FormData()
-        form.append('email', email)
-        form.append('password', password)
+        const form = new FormData();
+        form.append('email', email);
+        form.append('password', password);
+        form.append('nickname', nickname);
+        form.append('role', "USER");
+
 
         try {
-            const res = await axios.post(`http://192.168.72.79:8080/api/member/signup`, form, header);
+            const res = await axios.post("http://qw-api-env.eba-h52e7pma.ap-northeast-2.elasticbeanstalk.com/api/member/", form, header);
             console.log(res);
             alert("회원가입이 완료되었습니다.");
+            if (res.status === 200) {
+                // 응답이 성공적이면 로컬스토리지에 데이터 저장
+                // localStorage.setItem("data", JSON.stringify(res.data));
+
+                // /upload로 리다이렉션
+                navigate("/");
+            }
         } catch (error) {
             console.error("회원가입 중 오류 발생:", error);
         }
@@ -101,6 +115,24 @@ const SignupForm = () => {
                                     required
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    htmlFor="nickname"
+                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                    닉네임
+                                </label>
+                                <input
+                                    type="text"
+                                    name="nickname"
+                                    id="nickname"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="닉네임"
+                                    required
+                                    value={nickname}
+                                    onChange={(e) => setNickname(e.target.value)}
                                 />
                             </div>
                             <button

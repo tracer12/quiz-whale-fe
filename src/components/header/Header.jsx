@@ -12,11 +12,12 @@ const Header = () => {
     };
 
     const handleSingupClick = () => {
-        // 로컬스토리지의 데이터가 있으면 로그아웃
-        const accessToken = localStorage.getItem("data");
-        if (accessToken) {
+        // 로컬스토리지의 userData의 accessToken이 있으면 로그아웃
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        if (userData && userData.accessToken) {
             // 로그아웃 처리
-            localStorage.removeItem("data");
+            localStorage.removeItem("userData");
+            localStorage.removeItem("problemList");
             window.location.href = "/"; // 도메인 루트로 이동
         } else {
             // 회원가입 페이지로 이동
@@ -24,8 +25,9 @@ const Header = () => {
         }
     };
 
-    // 로컬스토리지에서 데이터 확인 (accessToken이 있으면 로그인 상태로 판단)
-    const isLoggedIn = localStorage.getItem("data") ? true : false;
+    // 로컬스토리지에서 userData 확인 (accessToken이 있으면 로그인 상태로 판단)
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const isLoggedIn = userData && userData.accessToken ? true : false;
 
     return (
         <header className="bg-white">

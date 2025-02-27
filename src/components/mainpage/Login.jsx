@@ -22,12 +22,12 @@ const LoginForm = () => {
         form.append('password', password);
 
         try {
-            const res = await axios.post(`http://3.34.120.190:8080/api/member/login`, form, header);
+            const res = await axios.post(`http://qw-api-env.eba-h52e7pma.ap-northeast-2.elasticbeanstalk.com/api/member/login`, form, header);
             console.log(res);
 
             if (res.status === 200) {
                 // 응답이 성공적이면 로컬스토리지에 데이터 저장
-                localStorage.setItem("data", JSON.stringify(res.data));
+                localStorage.setItem("userData", JSON.stringify(res.data));
 
                 // /upload로 리다이렉션
                 navigate("/upload");

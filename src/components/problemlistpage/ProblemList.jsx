@@ -5,173 +5,182 @@ const problemData = [
     {
         "id": 1,
         "title": "Not given",
-        "problem": "What is the main feature of the Transformer model proposed in the mentioned research?",
+        "problem": "Which of the following statements is false regarding the Transformer model in the context?",
         "choices": {
-            "A": "It is based solely on recurrent neural networks",
-            "B": "It is based solely on attention mechanisms",
-            "C": "It only includes an encoder",
-            "D": "It only includes a decoder",
-            "E": "It involves convolutional neural networks"
+            "A": "It is a sequence transduction model based on complex recurrent or convolutional neural networks.",
+            "B": "The model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task.",
+            "C": "The Transformer model is based solely on attention mechanisms.",
+            "D": "It surpassed existing models including ensembles on the WMT 2014 English-to-German translation task.",
+            "E": "It does not use recurrence and convolutions at all."
         },
-        "answer": "B"
+        "answer": "A",
+        "Explanation": "Choice A is false because the Transformer model is not based on complex recurrent or convolutional neural networks, but solely on attention mechanisms. It dispenses with recurrence and convolutions entirely."
     },
     {
         "id": 2,
-        "title": "Not given",
-        "problem": "What is the key characteristic of the Transformer model?",
+        "title": "Neural Networks and the Transformer Model",
+        "problem": "What is one of the primary features of the Transformer model in comparison to some other models?",
         "choices": {
-            "A": "It relies entirely on sequence-aligned RNNs.",
-            "B": "It relies entirely on convolution.",
-            "C": "It relies entirely on a recurrent network.",
-            "D": "It relies entirely on an attention mechanism.",
-            "E": "It relies entirely on conditional computation."
+            "A": "The Transformer model relies on sequential computation",
+            "B": "The Transformer model uses convolutional neural networks as basic building blocks",
+            "C": "The Transformer model utilizes recurrence and sequence alignment",
+            "D": "The Transformer model uses an attention mechanism to draw global dependencies between input and output",
+            "E": "The Transformer model uses self-attention to compute representations of its input and output with sequence-aligned RNNs or convolution"
         },
-        "answer": "D"
+        "answer": "D",
+        "Explanation": "The Transformer model is mentioned as relying entirely on an attention mechanism to draw global dependencies between input and output, allowing for significantly more parallelization."
     },
     {
         "id": 3,
-        "title": "Transformer-model architecture",
-        "problem": "What is the output dimension of the sub-layers and embedding layers in the Transformer-model architecture?",
+        "title": "Understanding the decoder in machine learning",
+        "problem": "What is the purpose of third sub-layer that is inserted into the decoder in a machine learning model?",
         "choices": {
-            "A": "512",
-            "B": "1024",
-            "C": "256",
-            "D": "128",
-            "E": "64"
+            "A": "To perform multi-head attention over the output of the encoder stack",
+            "B": "To offset the output embeddings by one position",
+            "C": "To produce outputs of dimension 512",
+            "D": "To facilitate residual connections",
+            "E": "To map a query and a set of key-value pairs to an output"
         },
-        "answer": "A"
-    },
+        "answer": "A",
+        "Explanation": "The text states that 'the decoder inserts a third sub-layer which performs multi-head attention over the output of the encoder stack.', hence option A is correct. The other options refer to different components or functions within the model, but they are not the primary purpose of the third sub-layer in the decoder."
+    }
+    ,
     {
         "id": 4,
-        "title": "Scaled Dot-Product and Multi-Head Attention",
-        "problem": "Which attention function is more efficient in terms of speed and space?",
+        "title": "Understanding the decoder in machine learning",
+        "problem": "What is the purpose of third sub-layer that is inserted into the decoder in a machine learning model?",
         "choices": {
-            "A": "Scaled Dot-Product Attention",
-            "B": "Multi-Head Attention",
-            "C": "Additive Attention",
-            "D": "None of the above",
-            "E": "Both A and B"
+            "A": "To perform multi-head attention over the output of the encoder stack",
+            "B": "To offset the output embeddings by one position",
+            "C": "To produce outputs of dimension 512",
+            "D": "To facilitate residual connections",
+            "E": "To map a query and a set of key-value pairs to an output"
         },
-        "answer": "A"
-    },
+        "answer": "A",
+        "Explanation": "The text states that 'the decoder inserts a third sub-layer which performs multi-head attention over the output of the encoder stack.', hence option A is correct. The other options refer to different components or functions within the model, but they are not the primary purpose of the third sub-layer in the decoder."
+    }
+    ,
     {
         "id": 5,
-        "title": "Not given",
-        "problem": "Which of the following is NOT a way the Transformer model uses multi-head attention?",
+        "title": "Understanding the decoder in machine learning",
+        "problem": "What is the purpose of third sub-layer that is inserted into the decoder in a machine learning model?",
         "choices": {
-            "A": "In encoder-decoder attention layers, where the queries come from the previous decoder layer, and the memory keys and values come from the output of the encoder.",
-            "B": "In self-attention layers, where all of the keys, values and queries come from the same place, in this case, the output of the previous layer in the encoder.",
-            "C": "In self-attention layers in the decoder, where each position in the decoder can attend to all positions in the decoder up to and including that position.",
-            "D": "In preventing leftward information flow in the decoder to preserve the auto-regressive property.",
-            "E": "In analyzing the input sequence in reverse to adjust the model's predictions."
+            "A": "To perform multi-head attention over the output of the encoder stack",
+            "B": "To offset the output embeddings by one position",
+            "C": "To produce outputs of dimension 512",
+            "D": "To facilitate residual connections",
+            "E": "To map a query and a set of key-value pairs to an output"
         },
-        "answer": "E"
-    },
+        "answer": "A",
+        "Explanation": "The text states that 'the decoder inserts a third sub-layer which performs multi-head attention over the output of the encoder stack.', hence option A is correct. The other options refer to different components or functions within the model, but they are not the primary purpose of the third sub-layer in the decoder."
+    }
+    ,
     {
         "id": 6,
-        "title": "Not given",
-        "problem": "Which of the following steps is not true for the layer types according to the table?",
+        "title": "Understanding the decoder in machine learning",
+        "problem": "What is the purpose of third sub-layer that is inserted into the decoder in a machine learning model?",
         "choices": {
-            "A": "Self-Attention layer connects all positions with a constant number of sequentially executed operations.",
-            "B": "Recurrent layer requires O(n) sequential operations.",
-            "C": "Convolutional layers are faster than recurrent layers.",
-            "D": "The length of the sequences in recurrent layers is smaller than the representation dimensionality.",
-            "E": "To improve computational performance for tasks involving long sequences, self-attention could be restricted."
+            "A": "To perform multi-head attention over the output of the encoder stack",
+            "B": "To offset the output embeddings by one position",
+            "C": "To produce outputs of dimension 512",
+            "D": "To facilitate residual connections",
+            "E": "To map a query and a set of key-value pairs to an output"
         },
-        "answer": "D"
-    },
+        "answer": "A",
+        "Explanation": "The text states that 'the decoder inserts a third sub-layer which performs multi-head attention over the output of the encoder stack.', hence option A is correct. The other options refer to different components or functions within the model, but they are not the primary purpose of the third sub-layer in the decoder."
+    }
+    ,
     {
         "id": 7,
-        "title": "Not given",
-        "problem": "What can be said about the complexity and behavior of convolutional layers according to the text?",
+        "title": "Understanding the decoder in machine learning",
+        "problem": "What is the purpose of third sub-layer that is inserted into the decoder in a machine learning model?",
         "choices": {
-            "A": "Convolutional layers are generally more expensive than recurrent layers.",
-            "B": "A single convolutional layer with kernel width k<n does not connect all pairs of input and output positions.",
-            "C": "The complexity of a separable convolution is equal to the combination of a self-attention layer and a point-wise feed-forward layer.",
-            "D": "All of the above.",
-            "E": "None of the above."
+            "A": "To perform multi-head attention over the output of the encoder stack",
+            "B": "To offset the output embeddings by one position",
+            "C": "To produce outputs of dimension 512",
+            "D": "To facilitate residual connections",
+            "E": "To map a query and a set of key-value pairs to an output"
         },
-        "answer": "D"
-    },
+        "answer": "A",
+        "Explanation": "The text states that 'the decoder inserts a third sub-layer which performs multi-head attention over the output of the encoder stack.', hence option A is correct. The other options refer to different components or functions within the model, but they are not the primary purpose of the third sub-layer in the decoder."
+    }
+    ,
     {
         "id": 8,
-        "title": "Not given",
-        "problem": "Which statement is true regarding the Transformer model for English-to-German and English-to-French news translation tests based on the given information?",
+        "title": "Understanding the decoder in machine learning",
+        "problem": "What is the purpose of third sub-layer that is inserted into the decoder in a machine learning model?",
         "choices": {
-            "A": "The Transformer model performs poorly on the English-to-German translation test.",
-            "B": "The Transformer model achieves lower BLEU scores than previous state-of-the-art models.",
-            "C": "Transformer (big) model outperforms other single models and ensembles.",
-            "D": "The training cost for the Transformer model is higher than other models.",
-            "E": "The BLEU score for the Transformer model for English-to-French translation is lower than 40."
+            "A": "To perform multi-head attention over the output of the encoder stack",
+            "B": "To offset the output embeddings by one position",
+            "C": "To produce outputs of dimension 512",
+            "D": "To facilitate residual connections",
+            "E": "To map a query and a set of key-value pairs to an output"
         },
-        "answer": "C"
-    },
+        "answer": "A",
+        "Explanation": "The text states that 'the decoder inserts a third sub-layer which performs multi-head attention over the output of the encoder stack.', hence option A is correct. The other options refer to different components or functions within the model, but they are not the primary purpose of the third sub-layer in the decoder."
+    }
+    ,
     {
         "id": 9,
-        "title": "Not given",
-        "problem": "What was observed about the Transformer architecture in Table 3?",
+        "title": "Understanding the decoder in machine learning",
+        "problem": "What is the purpose of third sub-layer that is inserted into the decoder in a machine learning model?",
         "choices": {
-            "A": "Reducing the attention key size reduces model quality",
-            "B": "Bigger models perform better",
-            "C": "Dropout is useful in preventing overfitting",
-            "D": "Positional encoding with sinusoids and learned positional embeddings produced similar results",
-            "E": "All of the above"
+            "A": "To perform multi-head attention over the output of the encoder stack",
+            "B": "To offset the output embeddings by one position",
+            "C": "To produce outputs of dimension 512",
+            "D": "To facilitate residual connections",
+            "E": "To map a query and a set of key-value pairs to an output"
         },
-        "answer": "E"
-    },
+        "answer": "A",
+        "Explanation": "The text states that 'the decoder inserts a third sub-layer which performs multi-head attention over the output of the encoder stack.', hence option A is correct. The other options refer to different components or functions within the model, but they are not the primary purpose of the third sub-layer in the decoder."
+    }
+    ,
     {
         "id": 10,
-        "title": "Not given",
-        "problem": "Which of the following articles is about 'Neural machine translation by jointly learning to align and translate'?",
+        "title": "Understanding the decoder in machine learning",
+        "problem": "What is the purpose of third sub-layer that is inserted into the decoder in a machine learning model?",
         "choices": {
-            "A": "Alex Graves. Generating sequences with recurrent neural networks.",
-            "B": "Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. Neural machine translation by jointly learning to align and translate.",
-            "C": "Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual learning for image recognition.",
-            "D": "Sepp Hochreiter, Yoshua Bengio, Paolo Frasconi, and Jürgen Schmidhuber. Gradient flow in recurrent nets: the difficulty of learning long-term dependencies.",
-            "E": "Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton. Layer normalization."
+            "A": "To perform multi-head attention over the output of the encoder stack",
+            "B": "To offset the output embeddings by one position",
+            "C": "To produce outputs of dimension 512",
+            "D": "To facilitate residual connections",
+            "E": "To map a query and a set of key-value pairs to an output"
         },
-        "answer": "B"
-    },
+        "answer": "A",
+        "Explanation": "The text states that 'the decoder inserts a third sub-layer which performs multi-head attention over the output of the encoder stack.', hence option A is correct. The other options refer to different components or functions within the model, but they are not the primary purpose of the third sub-layer in the decoder."
+    }
+    ,
     {
         "id": 11,
-        "title": "Understanding neural machine translation approaches",
-        "problem": "Which of the following describes the correct contribution of the respective researchers in the field of neural machine translation?",
+        "title": "Understanding the decoder in machine learning",
+        "problem": "What is the purpose of third sub-layer that is inserted into the decoder in a machine learning model?",
         "choices": {
-            "A": "Oﬁr Press and Lior Wolf used a decomposable attention model.",
-            "B": "Minh-Thang Luong, Hieu Pham, and Christopher D Manning developed a system that bridges the gap between human and machine translation.",
-            "C": "Noam Shazeer, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc Le, Geoffrey Hinton, and Jeff Dean proposed the use of the output embedding to improve language models.",
-            "D": "Ankur Parikh, Oscar Täckström, Dipanjan Das, and Jakob Uszkoreit worked on neural machine translation of rare words with subword units.",
-            "E": "Rico Sennrich, Barry Haddow, and Alexandra Birch focused on effective approaches to attention-based neural machine translation."
+            "A": "To perform multi-head attention over the output of the encoder stack",
+            "B": "To offset the output embeddings by one position",
+            "C": "To produce outputs of dimension 512",
+            "D": "To facilitate residual connections",
+            "E": "To map a query and a set of key-value pairs to an output"
         },
-        "answer": "E"
-    },
+        "answer": "A",
+        "Explanation": "The text states that 'the decoder inserts a third sub-layer which performs multi-head attention over the output of the encoder stack.', hence option A is correct. The other options refer to different components or functions within the model, but they are not the primary purpose of the third sub-layer in the decoder."
+    }
+    ,
     {
         "id": 12,
-        "title": "qwerqwer",
-        "problem": "Which of the following describes the correct contribution of the respective researchers in the field of neural machine translation?",
+        "title": "Understanding the decoder in machine learning",
+        "problem": "What is the purpose of third sub-layer that is inserted into the decoder in a machine learning model?",
         "choices": {
-            "A": "Oﬁr Press and Lior Wolf used a decomposable attention model.",
-            "B": "Minh-Thang Luong, Hieu Pham, and Christopher D Manning developed a system that bridges the gap between human and machine translation.",
-            "C": "Noam Shazeer, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc Le, Geoffrey Hinton, and Jeff Dean proposed the use of the output embedding to improve language models.",
-            "D": "Ankur Parikh, Oscar Täckström, Dipanjan Das, and Jakob Uszkoreit worked on neural machine translation of rare words with subword units.",
-            "E": "Rico Sennrich, Barry Haddow, and Alexandra Birch focused on effective approaches to attention-based neural machine translation."
+            "A": "To perform multi-head attention over the output of the encoder stack",
+            "B": "To offset the output embeddings by one position",
+            "C": "To produce outputs of dimension 512",
+            "D": "To facilitate residual connections",
+            "E": "To map a query and a set of key-value pairs to an output"
         },
-        "answer": "E"
-    },
-    {
-        "id": 13,
-        "title": "asdfasdf",
-        "problem": "Which of the following describes the correct contribution of the respective researchers in the field of neural machine translation?",
-        "choices": {
-            "A": "Oﬁr Press and Lior Wolf used a decomposable attention model.",
-            "B": "Minh-Thang Luong, Hieu Pham, and Christopher D Manning developed a system that bridges the gap between human and machine translation.",
-            "C": "Noam Shazeer, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc Le, Geoffrey Hinton, and Jeff Dean proposed the use of the output embedding to improve language models.",
-            "D": "Ankur Parikh, Oscar Täckström, Dipanjan Das, and Jakob Uszkoreit worked on neural machine translation of rare words with subword units.",
-            "E": "Rico Sennrich, Barry Haddow, and Alexandra Birch focused on effective approaches to attention-based neural machine translation."
-        },
-        "answer": "E"
+        "answer": "A",
+        "Explanation": "The text states that 'the decoder inserts a third sub-layer which performs multi-head attention over the output of the encoder stack.', hence option A is correct. The other options refer to different components or functions within the model, but they are not the primary purpose of the third sub-layer in the decoder."
     }
-];
+
+]
 
 const ProblemList = ({ setSelectedProblem }) => {
     const [currentPage, setCurrentPage] = useState(1);

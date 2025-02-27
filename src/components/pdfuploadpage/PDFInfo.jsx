@@ -1,19 +1,16 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const PDFInfo = ({ file }) => {
-    const [isObjective, setIsObjective] = useState(false); // 객관식 체크 상태
-    const [isSubjective, setIsSubjective] = useState(false); // 주관식 체크 상태
+    const [problemType, setProblemType] = useState(""); // 문제 유형 상태
+
     const [pageRange, setPageRange] = useState({ start: "", end: "" }); // 페이지 범위 상태
     const [keywords, setKeywords] = useState(""); // 핵심 키워드 상태
 
-    // 객관식 선택 처리
-    const handleObjectiveChange = (event) => {
-        setIsObjective(event.target.checked);
-    };
-
-    // 주관식 선택 처리
-    const handleSubjectiveChange = (event) => {
-        setIsSubjective(event.target.checked);
+    // 문제 유형 선택 처리
+    const handleProblemTypeChange = (event) => {
+        const value = event.target.name; // 객관식 또는 주관식
+        setProblemType(value); // 선택된 문제 유형 저장
     };
 
     // 페이지 범위 입력 처리
@@ -31,12 +28,41 @@ const PDFInfo = ({ file }) => {
     };
 
     // 전송 버튼 처리
-    const handleSubmit = () => {
-        console.log("PDF Info Submitted");
-        console.log("Objective:", isObjective);
-        console.log("Subjective:", isSubjective);
-        console.log("Page Range:", pageRange);
-        console.log("Keywords:", keywords);
+    const handleSubmit = async () => {
+        // 파일과 데이터를 FormData에 추가
+        const formData = new FormData();
+        console.log(pageRange.start, pageRange.end, keywords, problemType);
+        if (file) {
+            formData.append("file", file);
+        }
+        formData.append("start", pageRange.start);
+        formData.append("end", pageRange.end);
+        formData.append("keywords", keywords);
+        formData.append("type", problemType); // 선택된 문제 유형 추가
+
+        // 로컬 스토리지에서 accessToken 가져오기
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        const accessToken = userData ? userData.accessToken : null;
+
+        const header = {
+            headers: {
+                "Content-Type": "multipart/form-data", // 파일 전송을 위한 설정
+                "Authorization": `Bearer ${accessToken}`
+            }
+        }
+
+        try {
+            const response = await axios.post("http://qw-api-env.eba-h52e7pma.ap-northeast-2.elasticbeanstalk.com/api/quizzes", formData, header);
+
+            if (response.status === 200) {
+                // 서버 응답이 성공적이라면 데이터를 로컬 스토리지에 저장
+                localStorage.setItem("problemData", JSON.stringify(response.data));
+                alert("데이터가 성공적으로 제출되었습니다.");
+            }
+        } catch (error) {
+            console.error("서버에 전송 중 오류 발생:", error);
+            alert("서버에 전송 중 오류가 발생했습니다.");
+        }
     };
 
     return (
@@ -54,18 +80,20 @@ const PDFInfo = ({ file }) => {
                 <div className="flex space-x-4">
                     <label>
                         <input
-                            type="checkbox"
-                            checked={isObjective}
-                            onChange={handleObjectiveChange}
+                            type="radio"
+                            name="CHOICE"
+                            checked={problemType === "CHOICE"}
+                            onChange={handleProblemTypeChange}
                             className="mr-2"
                         />
                         객관식
                     </label>
                     <label>
                         <input
-                            type="checkbox"
-                            checked={isSubjective}
-                            onChange={handleSubjectiveChange}
+                            type="radio"
+                            name="SUBJECT"
+                            checked={problemType === "SUBJECT"}
+                            onChange={handleProblemTypeChange}
                             className="mr-2"
                         />
                         주관식
