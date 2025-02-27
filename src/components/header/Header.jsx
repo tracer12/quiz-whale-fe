@@ -1,5 +1,9 @@
 import React from "react";
 const Header = () => {
+    const handleLogoClick = () => {
+        // 홈페이지로 돌아가는 로직
+        window.location.href = "/"; // 도메인 루트로 이동
+    };
     return (
         <header className="bg-white">
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -7,7 +11,8 @@ const Header = () => {
                     <div className="-m-1.5 p-1.5">
                         <img
                             src="/quizwhale-icon.png"
-                            className="h-16 w-24" // 아이콘 크기 조정
+                            className="h-16 w-24 cursor-pointer" // 아이콘 크기 조정
+                            onClick={() => handleLogoClick()}
                         />
                     </div>
                 </div>
@@ -20,7 +25,7 @@ const Header = () => {
                 </div>
                 {/* 오른쪽 버튼(회원가입)도 항상 표시되도록 수정 */}
                 <div className="flex flex-1 justify-end">
-                    <a href="#" className="text-sm font-semibold text-gray-900">SignUp <span aria-hidden="true">&rarr;</span></a>
+                    <a href="#" className="text-sm font-semibold text-gray-900">회원가입 <span aria-hidden="true"></span></a>
                 </div>
             </nav>
         </header>
