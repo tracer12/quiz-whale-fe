@@ -5,7 +5,7 @@ import Introduce from "./Introduce.jsx";
 
 const MainPageForm = () => {
     // 로컬스토리지에서 accessToken 확인
-    const isLoggedIn = localStorage.getItem("data") ? true : false;
+    const isLoggedIn = localStorage.getItem("userData") ? true : false;
 
     return (
         <div>

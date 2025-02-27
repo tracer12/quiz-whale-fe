@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Loading from "../loading/Loading";
 
 const PDFInfo = ({ file }) => {
     const [problemType, setProblemType] = useState(""); // 문제 유형 상태
-
-    const [pageRange, setPageRange] = useState({ start: "", end: "" }); // 페이지 범위 상태
+    const [pageRange, setPageRange] = useState({ start: 1, end: 1 }); // 페이지 범위 상태
     const [keywords, setKeywords] = useState(""); // 핵심 키워드 상태
+    const [loading, setLoading] = useState(false); // 로딩 상태 관리
 
     // 문제 유형 선택 처리
     const handleProblemTypeChange = (event) => {
@@ -29,39 +30,49 @@ const PDFInfo = ({ file }) => {
 
     // 전송 버튼 처리
     const handleSubmit = async () => {
+        setLoading(true); // 로딩 시작
+
+        // 로컬스토리지에서 accessToken 가져오기
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        const mno = userData ? parseInt(userData.mno, 10) : null;  // mno를 정수형으로 변환
+        const accessToken = userData ? userData.accessToken : null;
+
+        // 페이지 범위 값도 정수로 변환
+        const startPage = parseInt(pageRange.start, 10);  // 시작 페이지 정수로 변환
+        const endPage = parseInt(pageRange.end, 10);  // 끝 페이지 정수로 변환
+
         // 파일과 데이터를 FormData에 추가
         const formData = new FormData();
-        console.log(pageRange.start, pageRange.end, keywords, problemType);
         if (file) {
             formData.append("file", file);
         }
-        formData.append("start", pageRange.start);
-        formData.append("end", pageRange.end);
-        formData.append("keywords", keywords);
+        formData.append("mno", mno); // mno는 정수형으로 전송
+        formData.append("start", startPage); // start는 정수형으로 전송
+        formData.append("end", endPage); // end는 정수형으로 전송
+        formData.append("keyword", keywords);
         formData.append("type", problemType); // 선택된 문제 유형 추가
-
-        // 로컬 스토리지에서 accessToken 가져오기
-        const userData = JSON.parse(localStorage.getItem("userData"));
-        const accessToken = userData ? userData.accessToken : null;
 
         const header = {
             headers: {
                 "Content-Type": "multipart/form-data", // 파일 전송을 위한 설정
-                "Authorization": `Bearer ${accessToken}`
+                Authorization: `Bearer ${accessToken}`
             }
         }
 
         try {
-            const response = await axios.post("http://qw-api-env.eba-h52e7pma.ap-northeast-2.elasticbeanstalk.com/api/quizzes", formData, header);
+            const response = await axios.post("http://qw-api-env.eba-h52e7pma.ap-northeast-2.elasticbeanstalk.com/api/quizzes/", formData, header);
 
             if (response.status === 200) {
                 // 서버 응답이 성공적이라면 데이터를 로컬 스토리지에 저장
                 localStorage.setItem("problemData", JSON.stringify(response.data));
                 alert("데이터가 성공적으로 제출되었습니다.");
+                window.location.href = "/problem"; // 리다이렉션
             }
         } catch (error) {
             console.error("서버에 전송 중 오류 발생:", error);
             alert("서버에 전송 중 오류가 발생했습니다.");
+        } finally {
+            setLoading(false); // 로딩 끝
         }
     };
 
@@ -70,9 +81,12 @@ const PDFInfo = ({ file }) => {
             {/* 파일 이름 출력 */}
             <div className="text-center">
                 <h3 className="text-xl font-semibold mb-4">
-                    {file ? `파일 이름: ${file.name}` : "파일을 업로드 해주세요"}
+                    {file ? file.name : "파일을 업로드 해주세요"}
                 </h3>
             </div>
+
+            {/* 로딩 화면 표시 */}
+            {loading && <Loading />}
 
             {/* 문제유형선택 텍스트 추가 */}
             <div className="mb-4 w-full">
