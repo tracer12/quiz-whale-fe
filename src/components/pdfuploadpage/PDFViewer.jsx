@@ -28,7 +28,7 @@ if (typeof Promise.withResolvers === "undefined") {
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const PDFViewer = ({ pdfFile }) => {
+const PDFViewer = ({ file }) => {
     const [numPages, setNumPages] = useState(null); // 총 페이지 수
 
     // PDF 로딩 성공 후 페이지 수 설정
@@ -39,9 +39,9 @@ const PDFViewer = ({ pdfFile }) => {
     return (
         <div className="pdf-viewer-container w-full h-full relative">
             {/* PDF 파일이 존재하면 Document 컴포넌트로 PDF 표시 */}
-            {pdfFile && (
+            {file && (
                 <Document
-                    file={pdfFile} // 전달받은 pdfFile 사용
+                    file={file} // 전달받은 pdfFile 사용
                     onLoadSuccess={onDocumentLoadSuccess}
                     loading={<p>로딩 중...</p>} // 로딩 중 UI
                 >

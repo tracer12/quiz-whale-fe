@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-const PDFInfo = ({ file }) => {
+const VoiceInfo = ({ file }) => {
     const [isObjective, setIsObjective] = useState(false); // 객관식 체크 상태
     const [isSubjective, setIsSubjective] = useState(false); // 주관식 체크 상태
-    const [pageRange, setPageRange] = useState({ start: "", end: "" }); // 페이지 범위 상태
+    const [pageRange, setPageRange] = useState({ start: "0", end: "0" }); // 페이지 범위 상태
     const [keywords, setKeywords] = useState(""); // 핵심 키워드 상태
 
     // 객관식 선택 처리
@@ -74,7 +74,7 @@ const PDFInfo = ({ file }) => {
             </div>
 
             {/* 페이지 범위 입력 */}
-            <div className="mb-4 w-full">
+            {/* <div className="mb-4 w-full">
                 <label className="block mb-2">페이지 범위:</label>
                 <div className="flex space-x-4">
                     <input
@@ -94,7 +94,7 @@ const PDFInfo = ({ file }) => {
                         className="border border-gray-300 p-2"
                     />
                 </div>
-            </div>
+            </div> */}
 
             {/* 핵심 키워드 입력 */}
             <div className="mb-4 w-full">
@@ -118,4 +118,4 @@ const PDFInfo = ({ file }) => {
     );
 };
 
-export default PDFInfo;
+export default VoiceInfo;
