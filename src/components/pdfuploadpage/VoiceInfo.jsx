@@ -41,7 +41,7 @@ const VoiceInfo = ({ file }) => {
         const header = {
             headers: {
                 "Content-Type": "multipart/form-data", // 파일 전송을 위한 설정
-                Authorization: `Bearer ${accessToken}`
+                "Authorization": `Bearer ${accessToken}`
             }
         }
 
