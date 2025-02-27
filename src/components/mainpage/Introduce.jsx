@@ -2,7 +2,7 @@ import React from "react";
 
 const Introduce = () => {
     return (
-        <div className="text-center py-16 px-10 ml-40">
+        <div className="text-center py-16 px-10">
             <img
                 src="/quizwhale-icon.png"
                 className="h-24 w-36 mx-auto mb-6"

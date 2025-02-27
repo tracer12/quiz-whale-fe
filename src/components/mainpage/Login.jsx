@@ -1,28 +1,41 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // useHistory 대신 useNavigate 사용
 
 const LoginForm = () => {
     const [email, setEmail] = useState(""); // 이메일 상태
     const [password, setPassword] = useState(""); // 비밀번호 상태
+    const navigate = useNavigate(); // useNavigate 훅 사용
 
     // 로그인 처리 함수
     const handleLogin = async (event) => {
         event.preventDefault();
+
         const header = {
             headers: {
                 "Content-Type": "x-www-form-urlencoded"
             }
+        };
+
+        const form = new FormData();
+        form.append('username', email);
+        form.append('password', password);
+
+        try {
+            const res = await axios.post(`http://3.34.120.190:8080/api/member/login`, form, header);
+            console.log(res);
+
+            if (res.status === 200) {
+                // 응답이 성공적이면 로컬스토리지에 데이터 저장
+                localStorage.setItem("data", JSON.stringify(res.data));
+
+                // /upload로 리다이렉션
+                navigate("/upload");
+            }
+        } catch (error) {
+            console.error("로그인 중 오류 발생:", error);
         }
-
-        const form = new FormData()
-        form.append('username', email)
-        form.append('password', password)
-
-        const res = await axios.post(`http://192.168.72.79:8080/api/member/login`, form, header)
-        console.log(res);
-        return res.data
-    }
-
+    };
 
     return (
         <div className="flex flex-col items-center mt-16 px-6 mx-auto mr-48">

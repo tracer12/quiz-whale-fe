@@ -1,13 +1,27 @@
 import React from "react";
+
 const Header = () => {
     const handleLogoClick = () => {
         // 홈페이지로 돌아가는 로직
         window.location.href = "/"; // 도메인 루트로 이동
     };
+
     const handleSingupClick = () => {
-        // 홈페이지로 돌아가는 로직
-        window.location.href = "/signup"; // 도메인 루트로 이동
+        // 로컬스토리지의 데이터가 있으면 로그아웃
+        const accessToken = localStorage.getItem("data");
+        if (accessToken) {
+            // 로그아웃 처리
+            localStorage.removeItem("data");
+            window.location.href = "/"; // 도메인 루트로 이동
+        } else {
+            // 회원가입 페이지로 이동
+            window.location.href = "/signup";
+        }
     };
+
+    // 로컬스토리지에서 데이터 확인 (accessToken이 있으면 로그인 상태로 판단)
+    const isLoggedIn = localStorage.getItem("data") ? true : false;
+
     return (
         <header className="bg-white">
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -16,7 +30,7 @@ const Header = () => {
                         <img
                             src="/quizwhale-icon.png"
                             className="h-16 w-24 cursor-pointer" // 아이콘 크기 조정
-                            onClick={() => handleLogoClick()}
+                            onClick={handleLogoClick}
                         />
                     </div>
                 </div>
@@ -27,9 +41,15 @@ const Header = () => {
                     <a href="#" className="text-sm font-semibold text-gray-900">Github</a>
                     <a href="#" className="text-sm font-semibold text-gray-900">Castle</a>
                 </div>
-                {/* 오른쪽 버튼(회원가입)도 항상 표시되도록 수정 */}
+                {/* 오른쪽 버튼이 회원가입 또는 로그아웃으로 바뀌도록 수정 */}
                 <div className="flex flex-1 justify-end">
-                    <div className="text-sm font-semibold text-gray-900 cursor-pointer" onClick={() => handleSingupClick()}>회원가입<span aria-hidden="true"></span></div>
+                    <div
+                        className="text-sm font-semibold text-gray-900 cursor-pointer"
+                        onClick={handleSingupClick}
+                    >
+                        {isLoggedIn ? "로그아웃" : "회원가입"}
+                        <span aria-hidden="true"></span>
+                    </div>
                 </div>
             </nav>
         </header>
