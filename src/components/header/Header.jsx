@@ -2,8 +2,15 @@ import React from "react";
 
 const Header = () => {
     const handleLogoClick = () => {
-        // 이미지 클릭 시 /upload 페이지로 이동
-        window.location.href = "/upload";
+        // 로컬스토리지에서 userData 확인 (accessToken이 없으면 이동하지 않음)
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        if (userData && userData.accessToken) {
+            // userData가 있고 accessToken이 있으면 /upload로 이동
+            window.location.href = "/upload";
+        } else {
+            // accessToken이 없으면 그냥 페이지에 남아있음
+            window.location.href = "/";
+        }
     };
 
     const handleIntroduceClick = () => {
@@ -37,7 +44,7 @@ const Header = () => {
                         <img
                             src="/quizwhale-icon.png"
                             className="h-16 w-24 cursor-pointer" // 아이콘 크기 조정
-                            onClick={handleLogoClick} // /upload로 이동
+                            onClick={handleLogoClick} // /upload로 이동 (조건 추가됨)
                         />
                     </div>
                 </div>
